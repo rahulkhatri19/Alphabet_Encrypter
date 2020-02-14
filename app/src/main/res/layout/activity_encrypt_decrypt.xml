@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".EncryptDecryptActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl_40"
         android:layout_width="match_parent"
@@ -75,10 +82,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/holo_red_light"
         android:padding="16dp"
         android:text="@string/result_text"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_light"
         app:layout_constraintEnd_toStartOf="@id/iv_copy"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gl_55" />

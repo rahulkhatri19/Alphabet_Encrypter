@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import kotlinx.android.synthetic.main.activity_encrypt_decrypt.*
 import java.lang.Exception
 
@@ -18,6 +18,15 @@ class EncryptDecryptActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_encrypt_decrypt)
+
+//        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+//        setSupportActionBar(toolbar)
+//        toolbar.setNavigationOnClickListener { finish() }
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
 
         if (intent.hasExtra("task")) {
             if (intent.getBooleanExtra("task", false)) {
@@ -30,7 +39,7 @@ class EncryptDecryptActivity : AppCompatActivity() {
             }
         }
 
-        et_message.addTextChangedListener(object : TextWatcher{
+        et_message.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
@@ -54,7 +63,6 @@ class EncryptDecryptActivity : AppCompatActivity() {
                 val stBuilder = StringBuilder()
                 var count = 1
                 for (i in 0 until stEncryptMessage.count()) {
-                    Log.e("Main:", "${stEncryptMessage[i]}, i:$i")
                     if ((stEncryptMessage.count() - 1) != i && stEncryptMessage[i].equals(
                             stEncryptMessage[i + 1]
                         )
@@ -63,7 +71,6 @@ class EncryptDecryptActivity : AppCompatActivity() {
                     } else {
                         stBuilder.append(stEncryptMessage[i])
                         stBuilder.append(count)
-                        Log.e("mainAct:", stBuilder.toString())
                         count = 1
                     }
 
@@ -83,15 +90,15 @@ class EncryptDecryptActivity : AppCompatActivity() {
                     for (i in 0 until stDecryptMessage.count() step 2) {
                         for (j in 0 until stDecryptMessage[i + 1].toString().toInt()) {
                             stBuilderDec.append(stDecryptMessage[i])
-                            Log.e(
-                                "MainDec",
-                                stBuilderDec.toString() + "j:$j, int:${stDecryptMessage[i + 1].toInt()}"
-                            )
                         }
                     }
                     tv_result_message.text = stBuilderDec
-                } catch (e:Exception){
-                    Toast.makeText(this, "Invalid Text \nPlease check Message format", Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    Toast.makeText(
+                        this,
+                        "Invalid Text \nPlease check Message format",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
             }
@@ -109,5 +116,14 @@ class EncryptDecryptActivity : AppCompatActivity() {
     override fun onBackPressed() {
         finish()
         super.onBackPressed()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val ab = supportActionBar
+        if (ab != null) {
+//            ab.setTitle("Encrypt and Decrypt")
+            ab.setDisplayHomeAsUpEnabled(true)
+        }
     }
 }
