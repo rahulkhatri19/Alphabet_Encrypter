@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">AlphabetEncrypter</string>
+    <string name="app_name">Alphabet Encrypter</string>
     <string name="encrypt_message">Encrypt Message</string>
     <string name="decrypt_message">Decrypt Message</string>
+    <string name="result_text">Result Text</string>
+    <string name="copy_result_text">copy result text</string>
 </resources>
